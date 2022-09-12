@@ -29,8 +29,8 @@
 - !dm
 
 ## Versions
-version 1.1
-Added:
+##### version 1.1
+**Added:**
 - !unmute
 - !slowmode
 
