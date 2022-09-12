@@ -1,9 +1,10 @@
 # simple-discord-bot
 
 Required Packages:
-Discord
 
-Json
+- Discord
+
+- Json
 
 Installation:
 - Change the bot token in the "token" parameter
