@@ -1,10 +1,11 @@
 # simple-discord-bot
 
-# Required Packages
+
+## Required Packages
 []: # discord.py
 []: # json
 
-# How to use
+## How to use
 []: # 1. Create a bot on the discord developer portal
 []: # 2. Enable all intents
 []: # 3. Copy the token
@@ -14,7 +15,7 @@
 []: # 7. Invite the bot to your server
 []: # 8. Enjoy
 
-# Commands
+## Commands
 - !ping
 - !help
 - !info
@@ -27,10 +28,9 @@
 - !slowmode
 - !dm
 
-# Versions
+## Versions
 version 1.1
 Added:
 - !unmute
 - !slowmode
-
 
