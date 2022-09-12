@@ -1,4 +1,3 @@
-from cProfile import run
 import discord
 from discord.ext import commands
 import os
@@ -11,6 +10,8 @@ intents.members = True
 TOKEN = ("TOKEN")
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+
+# admin commands
 
 @bot.command()
 async def ping(ctx):
@@ -37,9 +38,30 @@ async def mute(ctx, member: discord.Member, *, reason=None):
 
 @bot.command()
 @commands.has_permissions(manage_messages=True)
+async def unmute(ctx, member: discord.Member, *, reason=None):
+    role = discord.utils.get(ctx.guild.roles, name="Muted")
+    await member.remove_roles(role)
+    await ctx.send(f'Пользователь {member} был размучен')
+
+@bot.command()
+@commands.has_permissions(manage_messages=True)
 async def clear(ctx, amount=5):
     await ctx.channel.purge(limit=amount)
     await ctx.send(f'Удалено {amount} сообщений')
+
+@bot.command()
+@commands.has_permissions(manage_messages=True)
+async def dm(ctx, member: discord.Member, *, message):
+    await member.send(message)
+    await ctx.send(f'Сообщение отправлено пользователю {member}')
+
+@bot.command()
+@commands.has_permissions(manage_messages=True)
+async def slowmode(ctx, seconds: int):
+    await ctx.channel.edit(slowmode_delay=seconds)
+    await ctx.send(f'Словомод включен на {seconds} секунд')
+
+#default commands
 
 @bot.command()
 async def say(ctx, *, message):
@@ -49,11 +71,6 @@ async def say(ctx, *, message):
 async def embed(ctx, *, message):
     embed = discord.Embed(title="Embed", description=message, color=0x00ff00)
     await ctx.send(embed=embed)
-
-@bot.command()
-async def dm(ctx, member: discord.Member, *, message):
-    await member.send(message)
-    await ctx.send(f'Сообщение отправлено пользователю {member}')
 
 @bot.command()
 async def userinfo(ctx):
@@ -82,8 +99,10 @@ async def info(ctx):
     embed = discord.Embed(title="Информация о боте", description="Бот создан для удобства администрации сервера", color=0x00ff00)
     embed.add_field(name="Создатель бота", value="wezersovvv#9439", inline=False)
     embed.add_field(name="Telegram создатиеля", value="https://t.me/wezersovvv", inline=False)
-    embed.add_field(name="Версия бота", value="1.0.0", inline=False)
+    embed.add_field(name="Версия бота", value="1.1", inline=False)
     await ctx.send(embed=embed)
+
+
     
 
 
